@@ -1,4 +1,4 @@
-/* Réglages de base et image de fond granuleuse locale, on la garde */
+/* Réglages de base et image de fond granuleuse locale */
 body {
     font-family: 'Jost', sans-serif; /* Police de base propre */
     background-color: #1a0f2e; /* Couleur sombre de sécurité */
@@ -22,79 +22,28 @@ body {
     font-weight: 400;
 }
 
-/* En-tête complètement révisé */
+/* En-tête simplifié pour le logo image */
 header {
     text-align: center;
-    padding: 2rem 1rem 1rem; /* Moins de padding pour plus de densité */
+    padding: 2rem 1rem;
     position: relative;
     max-width: 800px;
     width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Badge central ovale */
-.header-badge {
-    background: #fff;
-    color: #333;
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    margin-bottom: 2rem;
-}
-
-/* Conteneur de titre et date ornemental révisé */
-.title-date-container {
+/* Conteneur pour centrer le logo image */
+.logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Plus compact */
-    position: relative;
 }
 
-/* Titre principal ornemental, effet néon et police */
-.ornamental-title {
-    margin: 0;
-    font-size: 3.5rem; /* Ajusté */
-    color: #fff;
-    letter-spacing: 3px;
-    position: relative;
-    font-weight: 400;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff; /* Effet néon simple */
-}
-
-/* Sparkles simples, plus discrets */
-.sparkle {
-    color: #fff;
-    font-size: 1rem;
-    position: relative;
-}
-
-.left-sparkle {
-    margin-right: -10px; /* Plus compact */
-}
-
-.right-sparkle-small {
-    font-size: 0.8rem;
-    margin-left: -5px; /* Plus compact */
-}
-
-/* Conteneur de date compact, comme le flyer */
-.date-container-compact {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* Aligné à droite */
-    margin-left: -10px; /* Plus compact */
-}
-
-.compact-date {
-    font-size: 1rem;
-    color: #fff;
-    line-height: 1.1;
-    margin: 0;
+/* Ton image logo centré */
+.main-logo-img {
+    max-width: 100%;
+    max-height: 250px; /* Taille maximum en hauteur pour pas qu'il mange tout l'écran */
+    display: block;
+    margin: 0 auto;
 }
 
 /* Informations ornementales secondaires */
@@ -121,9 +70,12 @@ main {
     margin-bottom: 1.5rem;
 }
 
-/* Les cartes (blocs sombres), plus sombres */
+/* NOUVEAU : Les cartes (blocs sombres) maintenant transparentes */
 .card {
-    background: rgba(10, 5, 20, 0.9); /* Fond violet sombre très profond */
+    /* Violet sombre très profond avec 85% d'opacité (rgba) */
+    background-color: rgba(26, 15, 46, 0.85); 
+    /* Effet de flou sur le fond d'écran derrière la carte */
+    backdrop-filter: blur(5px); 
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -160,11 +112,6 @@ main {
     border: 1px solid rgba(255, 235, 204, 0.3);
     margin: 15px 0;
     max-width: 180px;
-}
-
-.small-text {
-    font-size: 0.9rem;
-    color: #7f8c8d;
 }
 
 /* Formulaire */
@@ -240,7 +187,7 @@ footer {
     max-width: 800px;
 }
 
-/* Nouveau : Bloc de prix encadré blanc révisé, comme demandé */
+/* Bloc de prix encadré blanc */
 .price-box-revised {
     background-color: #fff; /* Fond blanc uni */
     color: #333; /* Texte sombre pour contraster */
@@ -266,4 +213,41 @@ footer {
     color: #fff;
     font-size: 1rem;
     margin-top: 0.2rem;
+}
+
+/* Zone de contact en bas */
+.contact-links {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-btn {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    width: 80%;
+    max-width: 300px;
+}
+
+.contact-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.insta-btn {
+    border-color: #E1306C; /* Couleur Instagram */
+}
+
+.insta-btn:hover {
+    background: rgba(225, 48, 108, 0.2);
 }
