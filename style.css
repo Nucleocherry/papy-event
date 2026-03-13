@@ -1,6 +1,7 @@
 /* Réglages de base et image de fond granuleuse locale */
 body {
-    font-family: 'Jost', sans-serif; /* Police de base propre */
+    /* NOUVEAU : On applique la police propre "Poppins" partout */
+    font-family: 'Poppins', sans-serif; 
     background-color: #1a0f2e; /* Couleur sombre de sécurité */
     background-image: url('./photo/fond_ecran.png'); 
     background-size: cover;
@@ -15,12 +16,11 @@ body {
     line-height: 1.6;
 }
 
-/* NOUVEAU : Polices ornementales LISSES (Cinzel Decorative) */
-/* On l'applique à la classe .ornamental ET aux titres h2 */
-.ornamental, h2 {
-    font-family: 'Cinzel Decorative', serif; /* Police ornementale lisse et classe */
-    text-transform: uppercase;
-    font-weight: 400;
+/* NOUVEAU : On supprime les styles ornementaux pour tous les textes */
+.ornamental {
+    font-family: 'Poppins', sans-serif; /* Police standard, sobre */
+    text-transform: none; /* Pas de majuscules automatiques */
+    font-weight: 400; /* Poids normal */
 }
 
 /* En-tête simplifié pour le logo image */
@@ -47,11 +47,12 @@ header {
     margin: 0 auto;
 }
 
-/* Informations ornementales secondaires */
+/* Informations ornementales secondaires (sobrement stylisées) */
 .private-event {
     color: #ffcc99;
     font-size: 1.1rem;
     margin: 1rem 0 0.2rem;
+    font-weight: 600; /* Un peu plus gras pour l'info importante */
 }
 
 .dj-set {
@@ -71,7 +72,7 @@ main {
     margin-bottom: 1.5rem;
 }
 
-/* Les cartes (blocs sombres) maintenant transparentes */
+/* NOUVEAU : Les cartes (blocs sombres) maintenant transparentes */
 .card {
     /* Violet sombre très profond avec 85% d'opacité (rgba) */
     background-color: rgba(26, 15, 46, 0.85); 
@@ -84,12 +85,16 @@ main {
     border: 1px solid rgba(255, 235, 204, 0.1); /* Bordure or très fine */
 }
 
-/* Style des titres H2 (qui utilisent maintenant la police lisse) */
+/* NOUVEAU : Titres H2 sobres et propres (plus gras, Sans-serif) */
 .card h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; /* Très gras pour les titres */
+    text-transform: uppercase;
     margin-top: 0;
     color: #fff;
     border-bottom: 2px solid #ff6633; /* Bordure orange profonde */
     padding-bottom: 10px;
+    letter-spacing: 1px; /* Un peu d'espacement pour la classe */
 }
 
 /* Liste du programme compacte */
@@ -136,6 +141,7 @@ main {
     font-size: 1rem;
     background: rgba(255, 235, 204, 0.05);
     color: #fff;
+    font-family: 'Poppins', sans-serif; /* Police dans les champs aussi */
 }
 
 .input-group input:focus {
@@ -157,6 +163,7 @@ button {
     text-transform: uppercase;
     transition: background 0.3s;
     margin-top: 10px;
+    font-family: 'Poppins', sans-serif; /* Police dans le bouton */
 }
 
 button:hover {
@@ -189,7 +196,7 @@ footer {
     max-width: 800px;
 }
 
-/* Bloc de prix encadré blanc */
+/* NOUVEAU : Bloc de prix encadré blanc sobre */
 .price-box-revised {
     background-color: #fff; /* Fond blanc uni */
     color: #333; /* Texte sombre pour contraster */
@@ -200,6 +207,8 @@ footer {
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    text-transform: none; /* Pas de majuscules automatiques */
 }
 
 .price-box-revised .price-line {
@@ -215,6 +224,8 @@ footer {
     color: #fff;
     font-size: 1rem;
     margin-top: 0.2rem;
+    font-family: 'Poppins', sans-serif;
+    text-transform: none; /* Pas de majuscules automatiques */
 }
 
 /* Zone de contact en bas */
@@ -238,6 +249,7 @@ footer {
     background: rgba(255, 255, 255, 0.05);
     width: 80%;
     max-width: 300px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .contact-btn:hover {
