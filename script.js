@@ -1,55 +1,59 @@
+/* ═══════════════════════════════════════════════════════
+   PAPY EVENT — script.js
+   ═══════════════════════════════════════════════════════ */
+
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Récupération des éléments du formulaire et du message
-    const form = document.getElementById('interest-form');
-    const successMessage = document.getElementById('success-message');
 
-    if (!form || !successMessage) {
-        console.error("Erreur: Un ou plusieurs éléments n'ont pas été trouvés dans le DOM. Vérifie tes IDs.");
-        return;
-    }
+    /* ── 1. ANIMATION D'ENTRÉE DU HERO ─────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
 
-    // COLLE TON LIEN FORMSPREE ENTRE LES GUILLEMETS CI-DESSOUS :
-    const endpoint = "https://formspree.io/f/xyknbzae";
+    revealEls.forEach((el, i) => {
+        // Délais échelonnés définis dans le CSS via animation-delay,
+        // ici on déclenche juste l'animation en ajoutant la classe active
+        el.style.animation = el.style.animation; // force reflow
+    });
 
-    // Quand quelqu'un clique sur le bouton de soumission
-    form.addEventListener('submit', async (event) => {
-        // Empêche le rechargement par défaut de la page
-        event.preventDefault();
-
-        // Récupération des données du formulaire
-        const formData = new FormData(form);
-
-        // Cache les messages précédents avant de soumettre
-        successMessage.classList.add('hidden');
-
-        try {
-            // Envoie les données vers ton endpoint Formspree
-            // On n'attend pas la réponse (pas de 'await' ici)
-            fetch(endpoint, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    // C'est très important de préciser qu'on s'attend à du JSON
-                    'Accept': 'application/json'
+    /* ── 2. SCROLL REVEAL ───────────────────────────────── */
+    const srObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Décalage léger entre chaque enfant d'un groupe
+                    const siblings = entry.target.parentElement.querySelectorAll('.sr');
+                    siblings.forEach((sib, i) => {
+                        if (!sib.classList.contains('visible')) {
+                            setTimeout(() => {
+                                sib.classList.add('visible');
+                            }, i * 80);
+                        }
+                    });
+                    srObserver.unobserve(entry.target);
                 }
             });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
 
-            // --- NOUVEAU : On force l'affichage du succès, peu importe la réponse ---
-            
-            // Cache le formulaire
-            form.classList.add('hidden');
-            // Montre le message de succès
-            successMessage.classList.remove('hidden');
+    document.querySelectorAll('.sr').forEach(el => srObserver.observe(el));
 
-            console.log("Formulaire soumis. Succès forcé en front.");
+    /* ── 3. PARALLAX LÉGER SUR LES BLOBS ────────────────── */
+    const blob1 = document.querySelector('.blob-1');
+    const blob2 = document.querySelector('.blob-2');
+    const blob3 = document.querySelector('.blob-3');
 
-        } catch (error) {
-            // Cette partie ne sera presque jamais atteinte car on n'attend pas la réponse
-            console.error('Erreur Réseau potentielle:', error);
-            // On peut quand même choisir d'afficher le succès ici pour être sûr
-            form.classList.add('hidden');
-            successMessage.classList.remove('hidden');
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const y = window.scrollY;
+                if (blob1) blob1.style.transform = `translate(0, ${y * .08}px)`;
+                if (blob2) blob2.style.transform = `translate(0, ${-y * .05}px)`;
+                if (blob3) blob3.style.transform = `translate(0, ${y * .04}px)`;
+                ticking = false;
+            });
+            ticking = true;
         }
     });
+
 });
